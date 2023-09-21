@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+_terminate() {
+  docker kill "$containerId"
+}
+
+trap _terminate SIGINT
+
+docker_image=$(docker buildx build --quiet --build-arg "NODE_UID=$(id -u)" --build-arg "NODE_GID=$(id -g)" node-docker-image);
+
+# shellcheck disable=SC2068
+containerId=$(docker run --detach --rm --publish '127.0.0.1:9239:9239' --env 'DEBUG=vite:*' --workdir '/workdir' --volume "$(pwd):/workdir" "$docker_image" $@);
+
+docker logs --follow "$containerId" &
+
+child="$!"
+
+wait "$child"

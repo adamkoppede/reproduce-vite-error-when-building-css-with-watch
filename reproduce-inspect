@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+./run-node node --inspect=0.0.0.0:9239 --inspect-brk node_modules/vite/bin/vite.js build --mode development --watch
