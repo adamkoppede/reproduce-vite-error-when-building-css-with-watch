@@ -7,6 +7,9 @@ We encountered the following error while running
 rendering chunks (114)...[vite:manifest] Plugin error - Unable to get file name for unknown file "a768f517"
 ```
 
+> [!NOTE]
+> A Pull-Request was created for this issue: https://github.com/vitejs/vite/pull/14450
+
 ## Debugging
 
 ### Initial Watch Call
